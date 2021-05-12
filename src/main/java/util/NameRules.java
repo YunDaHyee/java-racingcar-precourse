@@ -2,7 +2,7 @@ package util;
 
 //split_name_test에서의 리팩토링 - 앞서 구현한 name length 뿐만 아니라 split의 규칙도 추가하기 위해 클래스명 변경
 public class NameRules {
-	private String[] names;
+	public String[] names;
 	
 	private final static int MIN_LENGTH_NAME = 0;
 	private final static int MAX_LENGTH_NAME = 5;

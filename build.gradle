@@ -15,4 +15,9 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    // --bebug나 --info를 사용 시 너무 많은 로그가 출력되므로
+    // testLogging 의 exceptionFormat 을 'full'로 설정하면 적절하게 볼 수 있다.
+    testLogging { exceptionFormat = 'full' }
 }
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'

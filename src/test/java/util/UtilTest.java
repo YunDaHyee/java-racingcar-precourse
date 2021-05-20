@@ -10,8 +10,7 @@ import org.junit.jupiter.api.Test;
 		. 이름은 쉼표 기준으로 구분
 	
 	- 횟수
-		. 숫자 아닐 때 NumberFormatException
-		. 0~9 사이 숫자인가
+		. 1~N 사이 숫자인가
  */
 public class UtilTest {
 	@Test
@@ -35,9 +34,16 @@ public class UtilTest {
 		
 		
 		assertThatThrownBy( () -> {
-			assertThat(ValidationUtil.validName("car1,car2,car32222222222222"));
+			ValidationUtil.validName("car1,car2,car32222222222222");
 		}).isInstanceOf(IllegalArgumentException.class).hasMessage("자동차의 이름은 1자 이상, 5자 이하여야 합니다.");
 	}
 	
+	@Test
+	public void valid_count_test() {
+		assertThat(ValidationUtil.validCount(1));
+		assertThatThrownBy( () -> {
+			ValidationUtil.validCount(0); // TDD C - 1
+		}).isInstanceOf(IllegalArgumentException.class).hasMessage("시도할 횟수는 1회 이상이어야 합니다.");
+	}
 
 }

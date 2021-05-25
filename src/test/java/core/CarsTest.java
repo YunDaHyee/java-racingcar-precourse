@@ -17,9 +17,7 @@ public class CarsTest {
 	
 	@Test
 	public void name_test() {
-		assertThat(
-			cars.play().iterator()
-		).toString();
+		assertThat(cars.play()).contains("car1");
 	}
 }
 

@@ -17,7 +17,10 @@ public class Car {
 		return name;
 	}
 	
-	// public boolean go(int value) { // 객체지향적인 측면을 위해서 이 방법 대신 아래와 같이 구현
+	public int getPosition() {
+		return position;
+	}
+	
 	public ProgressTable go(int value) {
 		if( ADVANCE_NUMBER<=value ) {
 			this.position++;

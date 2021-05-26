@@ -6,5 +6,5 @@ public enum ProgressTable {
 	public boolean isGo() {
 		return this == GO;
 	}
-	
+
 }

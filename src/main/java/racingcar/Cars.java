@@ -30,8 +30,12 @@ public class Cars {
 		this.maxPosition++;
 	}
 	
-	private int randomValue() {
+	private int getRandomValue() {
 		return new Random().nextInt(8) + 1;
+	}
+	
+	private boolean isGoal() {
+		return maxPosition!=count;
 	}
 	
 	private boolean isMaxPosition(int position) {
@@ -51,9 +55,9 @@ public class Cars {
 	}
 	
 	public String play() {
-		while(maxPosition!=count){
+		while(isGoal()){
 			for( int j=0;j<cars.size();j++ ) {
-				if( cars.get(j).go(randomValue()).isGo() ) {
+				if( cars.get(j).go(getRandomValue()).isGo() ) {
 					if( isMaxPosition(cars.get(j).getPosition()) ) {
 						setMaxPosition();
 					}

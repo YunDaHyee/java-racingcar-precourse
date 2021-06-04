@@ -7,7 +7,7 @@ public class ValidationUtil {
 		return new NameRules(name).names;
 	}
 
-	public static int validCount(int count) {
+	public static int validCount(String count) {
 		return new CountRules(count).count;
 	}
 }

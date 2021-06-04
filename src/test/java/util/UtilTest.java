@@ -39,9 +39,9 @@ public class UtilTest {
 
 	@Test
 	public void valid_count_test() {
-		assertThat(ValidationUtil.validCount(1));
+		assertThat(ValidationUtil.validCount("1"));
 		assertThatThrownBy(() -> {
-			ValidationUtil.validCount(0); // TDD C - 1
+			ValidationUtil.validCount("0"); // TDD C - 1
 		}).isInstanceOf(IllegalArgumentException.class).hasMessage("시도할 횟수는 1회 이상이어야 합니다.");
 	}
 

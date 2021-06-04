@@ -8,10 +8,14 @@ public class NameRules {
 	private final static int MAX_LENGTH_NAME = 5;
 
 	public NameRules(String rawName) {
-		if (rawName.isBlank()) {
+		if (rawName.isEmpty() || rawName.equals("") || rawName.equals(" ")) {
 			throw new IllegalArgumentException("자동차의 이름을 입력해야 합니다.");
 		}
 
+		if( rawName.split(",").length<2 ) {
+			throw new IllegalArgumentException("참가 자동차는 2대 이상이어야 합니다.");
+		}
+		
 		for (String name : rawName.split(",")) {
 			if (name.length() <= MIN_LENGTH_NAME || name.length() > MAX_LENGTH_NAME) {
 				throw new IllegalArgumentException("자동차의 이름은 1자 이상, 5자 이하여야 합니다.");

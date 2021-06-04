@@ -6,17 +6,13 @@ import java.util.Random;
 import util.ValidationUtil;
 
 public class Cars {
-	private int count;
 	private int maxPosition;
-	private final List<Car> cars;
-
-	public Cars(int count, String names) {
-		this.count = count;
-		this.maxPosition = 0;
+	public final List<Car> cars;
+	
+	public Cars(String[] names) {	
 		cars = new LinkedList<Car>();
-		String[] splitNames = ValidationUtil.validName(names);
-		for (int i = 0; i < splitNames.length; i++) {
-			this.cars.add(new Car(splitNames[i]));
+		for (int i = 0; i < names.length; i++) {
+			this.cars.add(new Car(names[i]));
 		}
 	}
 
@@ -28,36 +24,48 @@ public class Cars {
 		return new Random().nextInt(8) + 1;
 	}
 
-	private boolean isGoal() {
-		return maxPosition != count;
-	}
-
 	private boolean isMaxPosition(int position) {
 		return maxPosition < position;
 	}
 
-	private String getWinner() {
-		//List<String> winners = new ArrayList<String>();
-		StringBuilder winners = new StringBuilder();
-		for (int i = 0; i < cars.size(); i++) {
-			if (cars.get(i).isWinner(count)) {
-				winners.append(cars.get(i).getName());
-			}
-		}
+	private String makeResult(Car thisCar) {
+		StringBuilder result = new StringBuilder();
+		result.append(thisCar.getName());
+		result.append(" : ");
+		go(thisCar);
+		result.append(thisCar.getBar());
+		result.append("\n");
+		return result.toString();
+	}
 
-		return winners.toString();
+	private void go(Car car) {
+		if (car.go(getRandomValue()).isGo()) {
+			if (isMaxPosition(car.getPosition())) {
+				setMaxPosition();
+			}
+			car.setBar("-");
+		}
 	}
 
 	public String play() {
-		while (isGoal()) {
-			for (int j = 0; j < cars.size(); j++) {
-				if (cars.get(j).go(getRandomValue()).isGo()) {
-					if (isMaxPosition(cars.get(j).getPosition())) {
-						setMaxPosition();
-					}
+		StringBuilder result = new StringBuilder();
+		for (int i = 0; i < cars.size(); i++) {
+			result.append(makeResult(cars.get(i)));
+		}
+		result.append("\n");
+		return result.toString();
+	}
+	
+	public String getWinner() {
+		StringBuilder winners = new StringBuilder();
+		for (int i = 0; i < cars.size(); i++) {
+			if (cars.get(i).isWinner(maxPosition)) {
+				if( winners.length()!=0 ) {
+					winners.append(", ");
 				}
+				winners.append(cars.get(i).getName());
 			}
 		}
-		return getWinner();
+		return winners.append( "가 최종 우승 했습니다." ).toString();
 	}
 }

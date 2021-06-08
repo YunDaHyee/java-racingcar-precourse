@@ -7,7 +7,7 @@ import util.ValidationUtil;
 
 public class Cars {
 	private int maxPosition;
-	public final List<Car> cars;
+	private final List<Car> cars;
 	
 	public Cars(String[] names) {	
 		cars = new LinkedList<Car>();
@@ -24,23 +24,19 @@ public class Cars {
 		return new Random().nextInt(8) + 1;
 	}
 
-	private boolean isMaxPosition(int position) {
-		return maxPosition < position;
-	}
-
 	private String makeResult(Car thisCar) {
 		StringBuilder result = new StringBuilder();
 		result.append(thisCar.getName());
 		result.append(" : ");
-		go(thisCar);
+		roulette(thisCar);
 		result.append(thisCar.getBar());
 		result.append("\n");
 		return result.toString();
 	}
 
-	private void go(Car car) {
-		if (car.go(getRandomValue()).isGo()) {
-			if (isMaxPosition(car.getPosition())) {
+	private void roulette(Car car) {
+		if (car.isGoOrStop(getRandomValue()).isGo()) {
+			if (car.isMaxPosition(maxPosition)) {
 				setMaxPosition();
 			}
 			car.setBar("-");

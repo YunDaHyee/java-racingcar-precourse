@@ -28,7 +28,7 @@ public class Car {
 		return bar.toString();
 	}
 
-	public ProgressTable go(int value) {
+	public ProgressTable isGoOrStop(int value) {
 		if (ADVANCE_NUMBER <= value) {
 			this.position++;
 			return ProgressTable.GO;
@@ -36,8 +36,13 @@ public class Car {
 		return ProgressTable.STOP;
 	}
 
+	public boolean isMaxPosition(int maxPosition) {
+		return maxPosition < position;
+	}
+	
 	public boolean isWinner(int maxPosition) {
 		return maxPosition == position;
 	}
+	
 
 }

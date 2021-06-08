@@ -25,11 +25,6 @@ public class CarsTest {
 	public void bar_test() {
 		int count = 0;
 		StringBuilder sb = new StringBuilder();
-		while (count++ < 5) {
-			for (int i = 0; i < cars.cars.size(); i++) {
-				//sb.append(cars.getBar(cars.cars.get(i)));
-			}
-		}
 		assertThat(sb.toString()).contains("---");
 	}
 }

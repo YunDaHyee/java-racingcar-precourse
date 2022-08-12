@@ -9,7 +9,8 @@ public class Cars {
 	private int maxPosition;
 	private final List<Car> cars;
 	
-	public Cars(String[] names) {	
+	public Cars(String[] names) {
+		// TODO 이 생성자 부분을 일급컬렉션으로 만든다
 		cars = new LinkedList<Car>();
 		for (int i = 0; i < names.length; i++) {
 			this.cars.add(new Car(names[i]));
